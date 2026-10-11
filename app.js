@@ -189,5 +189,15 @@
   document.getElementById('nextChallengeBtn').addEventListener('click',nextChallenge);
   document.getElementById('diagonalToggle').addEventListener('change',e=>diagonalLayer.classList.toggle('hidden-svg',!e.target.checked));
 
+  const gridStrength = document.getElementById('gridStrength');
+  function updateGridStrength(){
+    const raw = Number(gridStrength.value) / 100;
+    // Wider visual range: very faint at the low end, genuinely dark at the high end.
+    const strength = 0.06 + Math.pow(raw, 1.35) * 0.94;
+    svg.style.setProperty('--grid-opacity', strength.toFixed(3));
+  }
+  gridStrength.addEventListener('input', updateGridStrength);
+  updateGridStrength();
+
   createPointGroups(); showChallenge(); render();
 })();

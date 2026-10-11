@@ -82,10 +82,16 @@
             <strong>גררו קודקוד</strong>
             <span>הנקודה תיצמד לסריג</span>
           </div>
-          <label class="toggle-label">
-            <input id="diagonalToggle" type="checkbox" />
-            <span>הצגת אלכסונים</span>
-          </label>
+          <div class="geometry-controls">
+            <label class="grid-strength-control" for="gridStrength">
+              <span>עוצמת הסריג</span>
+              <input id="gridStrength" type="range" min="10" max="100" value="48" step="1" aria-label="עוצמת הסריג" />
+            </label>
+            <label class="toggle-label">
+              <input id="diagonalToggle" type="checkbox" />
+              <span>הצגת אלכסונים</span>
+            </label>
+          </div>
         </div>
         <div id="svgWrap" class="svg-wrap">
           <svg id="gridSvg" viewBox="0 0 760 620" role="img" aria-label="מרובע אינטראקטיבי על סריג">
