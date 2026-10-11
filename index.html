@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#fbfaf7" />
+  <title>משפחת המרובעים על סריג</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="top-actions" aria-label="פעולות כלליות">
+        <button id="resetBtn" class="prisma-action-btn prisma-action-btn--secondary" type="button" title="איפוס" aria-label="איפוס">
+          <span class="prisma-action-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M4.8 7.6A8 8 0 1 1 4 14"/><path d="M4.8 7.6V3.8M4.8 7.6H8.6"/></svg>
+          </span>
+          <span class="prisma-action-label">איפוס</span>
+        </button>
+        <button id="newStateBtn" class="prisma-action-btn prisma-action-btn--primary" type="button" title="מצב חדש" aria-label="מצב חדש">
+          <span class="prisma-action-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3v18M3 12h18"/></svg>
+          </span>
+          <span class="prisma-action-label">מצב חדש</span>
+        </button>
+      </div>
+      <h1>משפחת המרובעים על סריג</h1>
+      <img class="brand-logo" src="assets/img/prisma-logo.png" alt="Prisming – פריזמה" />
+    </header>
+
+    <main class="workspace">
+      <aside class="side-panel" aria-label="הוראות ותכונות">
+        <section class="intro-card">
+          <h2>חקרו את המרובע</h2>
+          <p>גררו את הקודקודים <bdi dir="ltr">A, B, C, D</bdi> על נקודות הסריג.</p>
+          <p>עקבו אחר התכונות שמשתנות, נסו לזהות את משפחת המרובע ורק אז לחצו על <strong>גלה את המרובע</strong>.</p>
+        </section>
+
+        <section class="properties-card">
+          <div class="card-heading-row">
+            <h2>מה מתקיים עכשיו?</h2>
+            <span id="validBadge" class="mini-badge valid">מרובע תקין</span>
+          </div>
+          <ul class="property-list" id="propertyList">
+            <li data-prop="parallel1"><span class="status-dot"></span><span><bdi dir="ltr">AB ∥ CD</bdi></span></li>
+            <li data-prop="parallel2"><span class="status-dot"></span><span><bdi dir="ltr">BC ∥ AD</bdi></span></li>
+            <li data-prop="oppEqual1"><span class="status-dot"></span><span><bdi dir="ltr">AB = CD</bdi></span></li>
+            <li data-prop="oppEqual2"><span class="status-dot"></span><span><bdi dir="ltr">BC = AD</bdi></span></li>
+            <li data-prop="allEqual"><span class="status-dot"></span><span>כל ארבע הצלעות שוות</span></li>
+            <li data-prop="allRight"><span class="status-dot"></span><span>כל ארבע הזוויות ישרות</span></li>
+            <li data-prop="diagPerp"><span class="status-dot"></span><span>האלכסונים מאונכים</span></li>
+            <li data-prop="diagEqual"><span class="status-dot"></span><span>האלכסונים שווים באורכם</span></li>
+          </ul>
+        </section>
+
+        <section class="reveal-card" aria-live="polite">
+          <button id="revealBtn" class="reveal-btn" type="button">גלה את המרובע</button>
+          <div id="revealResult" class="reveal-result hidden">
+            <div class="reveal-kicker">המרובע שיצרתם הוא</div>
+            <div id="shapeName" class="shape-name">—</div>
+            <div id="familyText" class="family-text"></div>
+          </div>
+        </section>
+
+        <section class="challenge-card">
+          <div class="card-heading-row">
+            <h2>אתגר חקר</h2>
+            <span id="challengeCounter" class="mini-badge">1 / 6</span>
+          </div>
+          <p id="challengeText" class="challenge-text"></p>
+          <div class="challenge-actions">
+            <button id="checkChallengeBtn" class="small-btn primary" type="button">בדקו את הבנייה</button>
+            <button id="nextChallengeBtn" class="small-btn secondary" type="button">אתגר אחר</button>
+          </div>
+          <div id="challengeFeedback" class="challenge-feedback" aria-live="polite"></div>
+        </section>
+      </aside>
+
+      <section class="geometry-card" aria-label="סריג גאומטרי אינטראקטיבי">
+        <div class="geometry-toolbar">
+          <div>
+            <strong>גררו קודקוד</strong>
+            <span>הנקודה תיצמד לסריג</span>
+          </div>
+          <label class="toggle-label">
+            <input id="diagonalToggle" type="checkbox" />
+            <span>הצגת אלכסונים</span>
+          </label>
+        </div>
+        <div id="svgWrap" class="svg-wrap">
+          <svg id="gridSvg" viewBox="0 0 760 620" role="img" aria-label="מרובע אינטראקטיבי על סריג">
+            <defs>
+              <pattern id="smallGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" class="grid-line" />
+              </pattern>
+              <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="2" stdDeviation="2.2" flood-opacity="0.16"/>
+              </filter>
+            </defs>
+            <rect x="20" y="20" width="720" height="580" rx="22" class="grid-bg" />
+            <rect x="20" y="20" width="720" height="580" rx="22" fill="url(#smallGrid)" />
+            <g id="diagonalLayer" class="diagonal-layer hidden-svg">
+              <line id="diagAC" class="diagonal" />
+              <line id="diagBD" class="diagonal" />
+            </g>
+            <polygon id="quadFill" class="quad-fill" />
+            <polyline id="quadOutline" class="quad-outline" />
+            <g id="rightAngleLayer"></g>
+            <g id="pointsLayer"></g>
+          </svg>
+        </div>
+        <div class="geometry-note">אפשר לבנות גם ריבוע או מלבן מסובבים — הצלעות אינן חייבות להיות מקבילות לקווי הסריג.</div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
