@@ -50,6 +50,7 @@
             <li data-prop="allRight"><span class="status-dot"></span><span>כל ארבע הזוויות ישרות</span></li>
             <li data-prop="diagPerp"><span class="status-dot"></span><span>האלכסונים מאונכים</span></li>
             <li data-prop="diagEqual"><span class="status-dot"></span><span>האלכסונים שווים באורכם</span></li>
+            <li data-prop="diagBisect"><span class="status-dot"></span><span>האלכסונים חוצים זה את זה</span></li>
           </ul>
         </section>
 
@@ -64,8 +65,7 @@
 
         <section class="challenge-card">
           <div class="card-heading-row">
-            <h2>אתגר חקר</h2>
-            <span id="challengeCounter" class="mini-badge">1 / 6</span>
+            <h2>אתגר בנייה</h2>
           </div>
           <p id="challengeText" class="challenge-text"></p>
           <div class="challenge-actions">
@@ -73,6 +73,11 @@
             <button id="nextChallengeBtn" class="small-btn secondary" type="button">אתגר אחר</button>
           </div>
           <div id="challengeFeedback" class="challenge-feedback" aria-live="polite"></div>
+          <div id="challengeExtra" class="challenge-extra hidden" aria-live="polite">
+            <p id="extraQuestion" class="extra-question"></p>
+            <div id="extraOptions" class="extra-options"></div>
+            <div id="extraFeedback" class="challenge-feedback"></div>
+          </div>
         </section>
       </aside>
 
@@ -108,6 +113,7 @@
             <g id="diagonalLayer" class="diagonal-layer hidden-svg">
               <line id="diagAC" class="diagonal" />
               <line id="diagBD" class="diagonal" />
+              <g id="diagMarkLayer"></g>
             </g>
             <polygon id="quadFill" class="quad-fill" />
             <polyline id="quadOutline" class="quad-outline" />
@@ -115,7 +121,7 @@
             <g id="pointsLayer"></g>
           </svg>
         </div>
-        <div class="geometry-note">אפשר לבנות גם ריבוע או מלבן מסובבים — הצלעות אינן חייבות להיות מקבילות לקווי הסריג.</div>
+        <div class="geometry-note">אפשר לבנות גם ריבוע או מלבן שהצלעות שלהם אינן מקבילות לקווי הסריג.</div>
       </section>
     </main>
   </div>
